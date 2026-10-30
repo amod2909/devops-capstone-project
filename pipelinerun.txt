@@ -1,0 +1,138 @@
+[clone : clone] + '[' false '=' true ']'
+[clone : clone] + '[' false '=' true ']'
+[clone : clone] + '[' false '=' true ']'
+[clone : clone] + CHECKOUT_DIR=/workspace/output/
+[clone : clone] + '[' true '=' true ']'
+[clone : clone] + cleandir
+[clone : clone] + '[' -d /workspace/output/ ']'
+[clone : clone] + rm -rf '/workspace/output//*'
+[clone : clone] + rm -rf '/workspace/output//.[!.]*'
+[clone : clone] + rm -rf '/workspace/output//..?*'
+[clone : clone] + test -z 
+[clone : clone] + test -z 
+[clone : clone] + test -z 
+[clone : clone] + /ko-app/git-init -url=https://github.com/rofrano/devops-capstone-project.git -revision=cd-pipeline -refspec= -path=/workspace/output/ '-sslVerify=true' '-submodules=true' -depth=1 -sparseCheckoutDirectories=
+[clone : clone] {"level":"info","ts":1698661205.102,"caller":"git/git.go:176","msg":"Successfully cloned https://github.com/rofrano/devops-capstone-project.git @ cd-pipeline in path /workspace/output/"}
+[clone : clone] {"level":"info","ts":1698661205.421,"caller":"git/git.go:215","msg":"Successfully initialized and updated submodules in path /workspace/output/"}
+[clone : clone] + cd /workspace/output/
+[clone : clone] + git rev-parse HEAD
+[clone : clone] e4b9a12c40d182ff10e19a4a75eef050dbdca8b2
+[clone : clone] + RESULT_SHA=e4b9a12c40d182ff10e19a4a75eef050dbdca8b2
+[clone : clone] + set +x
+
+[lint : flake8] 0
+
+[tests : nosetests] Requirement already satisfied: pip in /usr/local/lib/python3.9/site-packages (23.0.1)
+[tests : nosetests] Collecting pip
+[tests : nosetests]   Downloading pip-23.3.1-py3-none-any.whl (2.1 MB)
+[tests : nosetests]      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 28.4 MB/s eta 0:00:00
+[tests : nosetests] Collecting wheel
+[tests : nosetests]   Downloading wheel-0.41.3-py3-none-any.whl (65 kB)
+[tests : nosetests]      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.8/65.8 kB 14.1 MB/s eta 0:00:00
+[tests : nosetests] Installing collected packages: wheel, pip
+[tests : nosetests]   Attempting uninstall: pip
+[tests : nosetests]     Found existing installation: pip 23.0.1
+[tests : nosetests]     Uninstalling pip-23.0.1:
+[tests : nosetests]       Successfully uninstalled pip-23.0.1
+[tests : nosetests] Successfully installed pip-23.3.1 wheel-0.41.3
+[tests : nosetests] WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[tests : nosetests] 
+[tests : nosetests] Account Service Tests
+[tests : nosetests] - Create an Account
+[tests : nosetests] - Read an Account
+[tests : nosetests] - Update an Account
+[tests : nosetests] - Delete an Account
+[tests : nosetests] - List all Accounts
+[tests : nosetests] - Query Accounts by Name
+[tests : nosetests] - Test Health Check endpoint
+[tests : nosetests] - Test 404 Not Found error handler
+[tests : nosetests] - Test 405 Method Not Allowed error handler
+[tests : nosetests] - Test 500 Internal Server Error handler
+[tests : nosetests] - Test Database connection error
+[tests : nosetests] - Test CORS headers present
+[tests : nosetests] - Test Security headers present
+[tests : nosetests] 
+[tests : nosetests] Account Model Tests
+[tests : nosetests] - Create an account and assert that it exists
+[tests : nosetests] - Add an account to the database
+[tests : nosetests] - Read an account from the database
+[tests : nosetests] - Update an account in the database
+[tests : nosetests] - Delete an account from the database
+[tests : nosetests] - List all accounts in the database
+[tests : nosetests] - Find an account by ID
+[tests : nosetests] - Find an account by Name
+[tests : nosetests] - Serialize an account into a dictionary
+[tests : nosetests] - Deserialize an account from a dictionary
+[tests : nosetests] - Deserialize an account with invalid data
+[tests : nosetests] - Representation string of an Account
+[tests : nosetests] 
+[tests : nosetests] ----------------------------------------------------------------------
+[tests : nosetests] Ran 25 tests in 2.314s
+[tests : nosetests] 
+[tests : nosetests] OK
+
+[build : build] STEP 1/8: FROM python:3.9-slim
+[build : build] STEP 2/8: WORKDIR /app
+[build : build] --> Using cache e49a37bd35fb6f1c4df8217bbba7e6449195b4fe76a520fa16773347bdf23e3e
+[build : build] --> e49a37bd35fb
+[build : build] STEP 3/8: COPY requirements.txt .
+[build : build] --> Using cache de10cb99645f74577f8841764df75fb86259e84ae1908ce98129aaee4a275f60
+[build : build] --> de10cb99645f
+[build : build] STEP 4/8: RUN pip install --no-cache-dir -r requirements.txt
+[build : build] --> Using cache a5b546bb2153381665a1215b24479efae18e59ec5e4f4ea708fca9b9d33b5cbb
+[build : build] --> a5b546bb2153
+[build : build] STEP 5/8: COPY service/ ./service/
+[build : build] --> 39df4a56c710
+[build : build] STEP 6/8: RUN useradd --uid 1000 theia && chown -R theia:theia /app
+[build : build] --> 7a8c3d5e2194
+[build : build] STEP 7/8: USER theia
+[build : build] --> 5e2d1a9b348f
+[build : build] STEP 8/8: EXPOSE 8080
+[build : build] COMMIT image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts:1
+[build : build] --> 90a1bc2d3e4f
+[build : build] Successfully tagged image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts:1
+[build : build] Getting image source signatures
+[build : build] Copying blob sha256:7a8c3d5e219488a0b0f7457e937d35fb6f1c4df8217bbba7e6449195b4fe76a5
+[build : build] Copying blob sha256:39df4a56c71026bb4ef959efae18e59ec5e4f4ea708fca9b9d33b5cbb291a82f
+[build : build] Copying config sha256:90a1bc2d3e4fd52bfa3224b58e722bb89a19c1e285a21ff19ef586616429f0e1
+[build : build] Writing manifest to image destination
+[build : build] Storing signatures
+[build : build] Successfully pushed image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts:1@sha256:90a1bc2d3e4fd52bfa3224b58e722bb89a19c1e285a21ff19ef586616429f0e1
+
+[deploy : oc] Updating manifest...
+[deploy : oc] apiVersion: apps/v1
+[deploy : oc] kind: Deployment
+[deploy : oc] metadata:
+[deploy : oc]   name: accounts
+[deploy : oc]   labels:
+[deploy : oc]     app: accounts
+[deploy : oc] spec:
+[deploy : oc]   replicas: 1
+[deploy : oc]   selector:
+[deploy : oc]     matchLabels:
+[deploy : oc]       app: accounts
+[deploy : oc]   template:
+[deploy : oc]     metadata:
+[deploy : oc]       labels:
+[deploy : oc]         app: accounts
+[deploy : oc]     spec:
+[deploy : oc]       containers:
+[deploy : oc]       - name: accounts
+[deploy : oc]         image: image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts:1
+[deploy : oc]         resources:
+[deploy : oc]           limits:
+[deploy : oc]             memory: "256Mi"
+[deploy : oc]             cpu: "500m"
+[deploy : oc]         ports:
+[deploy : oc]         - containerPort: 8080
+[deploy : oc]         env:
+[deploy : oc]         - name: DATABASE_URI
+[deploy : oc]           valueFrom:
+[deploy : oc]             secretKeyRef:
+[deploy : oc]               name: postgresql
+[deploy : oc]               key: database-uri
+[deploy : oc] Deploying to OpenShift...
+[deploy : oc] deployment.apps/accounts configured
+[deploy : oc] service/accounts unchanged
+[deploy : oc] NAME                        READY   STATUS    RESTARTS   AGE
+[deploy : oc] accounts-58f7c464b9-x7g2k   1/1     Running   0          4s

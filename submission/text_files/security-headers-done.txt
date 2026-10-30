@@ -1,0 +1,35 @@
+nosetests -v --with-spec --spec-color
+
+Account Service Tests
+- Create an Account
+- Read an Account
+- Update an Account
+- Delete an Account
+- List all Accounts
+- Query Accounts by Name
+- Test Health Check endpoint
+- Test 404 Not Found error handler
+- Test 405 Method Not Allowed error handler
+- Test 500 Internal Server Error handler
+- Test Database connection error
+- Test CORS headers present
+- Test Security headers present
+
+Account Model Tests
+- Create an account and assert that it exists
+- Add an account to the database
+- Read an account from the database
+- Update an account in the database
+- Delete an account from the database
+- List all accounts in the database
+- Find an account by ID
+- Find an account by Name
+- Serialize an account into a dictionary
+- Deserialize an account from a dictionary
+- Deserialize an account with invalid data
+- Representation string of an Account
+
+----------------------------------------------------------------------
+Ran 25 tests in 2.115s
+
+OK

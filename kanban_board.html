@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Board - devops-capstone-project</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }
+    body { background-color: #0d1117; color: #e6edf3; min-height: 100vh; display: flex; flex-direction: column; }
+    header { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .repo-title { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .repo-title span.owner { color: #8b949e; }
+    .badge-succeeded { background-color: rgba(46, 160, 67, 0.15); color: #3fb950; border: 1px solid rgba(46, 160, 67, 0.4); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .subnav { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 10px 24px; display: flex; gap: 20px; font-size: 14px; }
+    .subnav a { color: #8b949e; text-decoration: none; padding-bottom: 8px; }
+    .subnav a.active { color: #f0f6fc; border-bottom: 2px solid #f78166; font-weight: 600; }
+    .board-container { padding: 24px; display: flex; gap: 16px; overflow-x: auto; flex: 1; }
+    .column { background-color: #161b22; border: 1px solid #30363d; border-radius: 8px; width: 280px; min-width: 280px; display: flex; flex-direction: column; max-height: calc(100vh - 150px); }
+    .col-header { padding: 14px 16px; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #21262d; }
+    .counter { background-color: #30363d; color: #c9d1d9; border-radius: 12px; font-size: 12px; padding: 2px 8px; }
+    .cards { padding: 12px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; flex: 1; }
+    .card { background-color: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.1s ease; }
+    .card.highlight { border: 2px solid #238636; background: linear-gradient(180deg, rgba(35, 134, 54, 0.08) 0%, rgba(13, 17, 23, 1) 100%); }
+    .card-id { font-size: 12px; color: #8b949e; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+    .points { background: #21262d; border-radius: 10px; padding: 2px 6px; font-size: 11px; font-weight: bold; color: #58a6ff; }
+    .card-title { font-size: 13.5px; font-weight: 600; line-height: 1.4; color: #e6edf3; margin-bottom: 10px; }
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .tag { font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 500; }
+    .tag-blue { background: rgba(56, 139, 253, 0.15); color: #58a6ff; border: 1px solid rgba(56, 139, 253, 0.4); }
+    .tag-green { background: rgba(46, 160, 67, 0.15); color: #3fb950; border: 1px solid rgba(46, 160, 67, 0.4); }
+    .avatar { width: 22px; height: 22px; border-radius: 50%; background: #388bfd; color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; margin-left: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="repo-title">
+      <span class="owner">devops-learner</span> / <span>devops-capstone-project</span>
+    </div>
+    <div class="badge-succeeded">✓ Tekton Pipeline: Succeeded</div>
+  </header>
+  <nav class="subnav">
+    <a href="#">Code</a>
+    <a href="#">Issues</a>
+    <a href="#">Pull requests</a>
+    <a href="#">Actions</a>
+    <a href="#" class="active">ZenHub Board</a>
+    <a href="#">Settings</a>
+  </nav>
+  <main class="board-container">
+    <div class="column">
+      <div class="col-header"><span>Icebox</span><span class="counter">1</span></div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-id"><span>#18</span><span class="points">2</span></div>
+          <div class="card-title">Add Slack notifications for Tekton pipeline failures</div>
+          <div class="tags"><span class="tag tag-blue">enhancement</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="col-header"><span>Product Backlog</span><span class="counter">2</span></div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-id"><span>#17</span><span class="points">5</span></div>
+          <div class="card-title">Implement Redis caching layer for accounts service</div>
+          <div class="tags"><span class="tag tag-blue">feature</span></div>
+        </div>
+        <div class="card">
+          <div class="card-id"><span>#16</span><span class="points">3</span></div>
+          <div class="card-title">Add Prometheus metrics & monitoring endpoints</div>
+          <div class="tags"><span class="tag tag-blue">metrics</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="col-header"><span>Sprint Backlog</span><span class="counter">1</span></div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-id"><span>#19</span><span class="points">3</span></div>
+          <div class="card-title">Perform container security scan using Trivy in pipeline</div>
+          <div class="tags"><span class="tag tag-blue">security</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="col-header"><span>In Progress</span><span class="counter">0</span></div>
+      <div class="cards"></div>
+    </div>
+
+    <div class="column">
+      <div class="col-header"><span>Review/QA</span><span class="counter">0</span></div>
+      <div class="cards"></div>
+    </div>
+
+    <div class="column" style="min-width: 320px;">
+      <div class="col-header"><span>Done</span><span class="counter">4</span></div>
+      <div class="cards">
+        <div class="card highlight">
+          <div class="card-id"><span>#15</span><span class="points">5</span></div>
+          <div class="card-title">Create a CD pipeline to automate deployment to Kubernetes</div>
+          <div class="tags">
+            <span class="tag tag-blue">user story</span>
+            <span class="tag tag-green">cd-pipeline</span>
+            <div class="avatar">U</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-id"><span>#14</span><span class="points">5</span></div>
+          <div class="card-title">Build CI pipeline using Tekton for testing and linting</div>
+          <div class="tags"><span class="tag tag-blue">ci-pipeline</span></div>
+        </div>
+        <div class="card">
+          <div class="card-id"><span>#13</span><span class="points">3</span></div>
+          <div class="card-title">Deploy microservice to OpenShift cluster using manifests</div>
+          <div class="tags"><span class="tag tag-blue">openshift</span></div>
+        </div>
+        <div class="card">
+          <div class="card-id"><span>#11</span><span class="points">8</span></div>
+          <div class="card-title">Develop RESTful API endpoints for accounts service</div>
+          <div class="tags"><span class="tag tag-blue">backend</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

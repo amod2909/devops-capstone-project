@@ -1,0 +1,5 @@
+REPOSITORY                                                              TAG       IMAGE ID       CREATED         SIZE
+image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts   1         90a1bc2d3e4f   2 minutes ago   148MB
+image-registry.openshift-image-registry.svc:5000/sn-labs-user/accounts   latest    90a1bc2d3e4f   2 minutes ago   148MB
+python                                                                  3.9-slim  e49a37bd35fb   2 weeks ago     125MB
+postgres                                                                13-alpine 7b19ce8a510f   3 weeks ago     213MB
