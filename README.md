@@ -9,7 +9,7 @@
 ## Overview
 This repository contains the complete codebase and pipeline artifacts for the **DevOps Capstone Project**. It includes the RESTful `accounts` microservice built using Python Flask, SQLAlchemy, CORS, and Talisman security headers, along with comprehensive CI/CD automation using GitHub Actions and Tekton Pipelines on OpenShift/Kubernetes.
 
----
+
 
 ## 📁 Repository Structure
 
@@ -49,7 +49,7 @@ Capstone_project/
 └── README.md                   # Repository documentation with CI badge
 ```
 
----
+
 
 ## 🚀 REST API Endpoints
 
@@ -62,7 +62,7 @@ Capstone_project/
 | `DELETE` | `/accounts/{id}` | Delete an account |
 | `GET` | `/health` | Health check endpoint |
 
----
+
 
 ## 🔄 CI/CD Automation
 
